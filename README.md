@@ -1,3 +1,5 @@
+![Alt Text](monoLogo.PNG?raw=true "MonoLogo")
+
 February 13th, 2017
 
 Assaf Zaritsky - assafzar@gmail.com
