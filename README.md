@@ -7,7 +7,8 @@ February 13th, 2017
 - Input: time laspe of monolayer migration experiment (phase contrast)
 - Output: speed, directionality and coordinaion kymographs, wound healing rate
 
-Contact: Assaf Zaritsky - assafzar@gmail.com
+* Contact: Assaf Zaritsky - assafzar@gmail.com
+
 -------------------
 ### Input
 
