@@ -24,7 +24,7 @@ Assaf Zaritsky - assafzar@gmail.com
 - `params.kymoResolution.maxDistMu` % how deep to go into the monolayer for kymograph analysis (um).
 
 ### Test data
-- In the directory `testData`, file named `Angeles_20150402_14hrs_5min_AA01_7.tif`
+- Download raw images via the link: [TestData](https://cloud.biohpc.swmed.edu/index.php/s/SWGQQJySbOI206o/download) , called `Angeles_20150402_14hrs_5min_AA01_7.tif`
 - The default parameters in `main.m` were set for this data
 
 ### Output folders
