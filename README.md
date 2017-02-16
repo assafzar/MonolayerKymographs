@@ -1,4 +1,4 @@
-![Alt Text](monoLogo2.PNG?raw=true "MonoLogo")
+![Alt Text](monoLogo1.PNG?raw=true "MonoLogo")
 
 February 13th, 2017
 
