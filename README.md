@@ -33,7 +33,7 @@ Assaf Zaritsky - assafzar@gmail.com
 - Each time-lapse has its own folder (e.g., `Angeles_20150402_14hrs_5min_AA01_7`). 
 - Each time-lapse folder  includes the following sub-folders, each containing per-frame outputs as described next (`.mat` file):
   - `images`: raw images
-  - `MF/mf`: PIV (velocity fields per frame)
+  - `MF/mf`: PIV (velocity fields per frame) 
   - `ROI/roi`: segmentation (ROI per frame)
   - `coordination`: masks of cells moving in coordinated clusters (per frame)
 
