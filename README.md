@@ -8,12 +8,12 @@ February 13th, 2017
 - Output: speed, directionality and coordinaion kymographs, wound healing rate
 
 Contact: Assaf Zaritsky - assafzar@gmail.com
-
 -------------------
+### Input
 
-% input: file name for time-lapse data, parameters (optional)
-% produces output in designated directories
-main(filename,params)
+- Input: file name for time-lapse data, parameters (optional).
+- Produces output in designated directories.
+  - `main(filename, params)`
 
 ### Needed parameters
 - `params.timePerFrame` % Imaging frequency: time between acquired frames (minutes).
@@ -25,9 +25,8 @@ main(filename,params)
 - `params.kymoResolution.maxDistMu` % how deep to go into the monolayer for kymograph analysis (um).
 
 ### Test data
----------
-In the directory `testData`, file named `Angeles_20150402_14hrs_5min_AA01_7.tif`
-The default parameters in `main.m` were set for this data
+- In the directory `testData`, file named `Angeles_20150402_14hrs_5min_AA01_7.tif`
+- The default parameters in `main.m` were set for this data
 
 ### Output folders
 - Each time-lapse has its own folder (e.g., `Angeles_20150402_14hrs_5min_AA01_7`). 
@@ -37,24 +36,22 @@ The default parameters in `main.m` were set for this data
   - `ROI/roi`: segmentation (ROI per frame)
   - `coordination`: masks of cells moving in coordinated clusters (per frame)
 
-
 The following folders include summary for all time-lapse analyzed and are located at the parent folder (at the level of the time-lapse folders):
-healingRate: healing rate over time in a .mat file
-kymographs: sub-folders for speed, directionality and coordination, each one holds the kymographs in .eps (visualization) and .mat (data) formats
-segmentation: video showing the visualization over time
+- `healingRate`: healing rate over time in a `.mat` file
+- `kymographs`: sub-folders for speed, directionality and coordination, each one holds the kymographs in `.eps` (visualization) and `.mat` (data) formats
+- `segmentation`: video showing the visualization over time
 
 -----------------
-Please contact Assaf Zaritsky, assafzar@gmail.com, for any questions / suggestions.
-Citation
 
-A webserver implementing this code is available at https://debias.biohpc.swmed.edu/, a comprehensive user manual is available at the web-site.
-
-
-Source code of the database and for setting the webserver are also available upon request.
+### Citation
 
 Please cite the following manuscript when using this code:
-"Diverse roles of guanine nucleotide exchange factors in regulating collective cell migration" (https://doi.org/10.1101/076125)
+["Diverse roles of guanine nucleotide exchange factors in regulating collective cell migration"](https://doi.org/10.1101/076125) (https://doi.org/10.1101/076125)
 
 Please contact Assaf Zaritsky, assafzar@gmail.com, for any questions / suggestions / bug reports.
 
-For more work from the Danuser Lab: http://www.utsouthwestern.edu/labs/danuser/
+-----------------
+
++ For more work from the Danuser Lab: http://www.utsouthwestern.edu/labs/danuser/
+
+  (and software: http://www.utsouthwestern.edu/labs/danuser/software/ )
