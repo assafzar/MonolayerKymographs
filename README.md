@@ -1,15 +1,14 @@
 -------------------
 February 13th, 2017
 
+Assaf Zaritsky - assafzar@gmail.com
+
 ## Monolayer spatiotemporal analysis source code
 ### The repository includes Matlab source code and one test dataset.
 
 - Input: time laspe of monolayer migration experiment (phase contrast)
 - Output: speed, directionality and coordinaion kymographs, wound healing rate
 
-* Contact: Assaf Zaritsky - assafzar@gmail.com
-
--------------------
 ### Input
 
 - Input: file name for time-lapse data, parameters (optional).
