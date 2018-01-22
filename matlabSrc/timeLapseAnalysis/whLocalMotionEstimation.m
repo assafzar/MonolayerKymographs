@@ -10,7 +10,7 @@ if exist([dirs.mfData filesep '001_mf.mat'],'file') && params.always
     delete([dirs.mfData '*.mat']);
 end
 
-for t = 1 : params.nTime - params.frameJump
+for t = 1 : params.nTime
     mfFname = [dirs.mfData sprintf('%03d',t) '_mf.mat'];
     
     if exist(mfFname,'file') && ~params.always

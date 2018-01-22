@@ -28,7 +28,7 @@ medianPrecentDy = [];
 % 
 % [optim,metric]=imregconfig('monomodal');
 
-for t = 1 : params.nTime - params.frameJump
+for t = 1 : params.nTime
     mfFname = [dirs.mfData sprintf('%03d',t) '_mf.mat'];
     roiFname = [dirs.roiData sprintf('%03d',t) '_roi.mat'];    
     

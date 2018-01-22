@@ -2,7 +2,7 @@
 function [] = whTemporalBasedSegmentation(params,dirs)
 
 lbpMapping = getmapping(8,'riu2');
-for t = 1 : params.nTime - params.frameJump
+for t = 1 : params.nTime
     
     roiFname = [dirs.roiData pad(t,3) '_roi.mat'];
     

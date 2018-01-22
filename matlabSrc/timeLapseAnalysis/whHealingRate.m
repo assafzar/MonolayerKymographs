@@ -7,7 +7,7 @@ healingRateMetaFname = [dirs.healingRate dirs.expname '_healingRate.mat'];
 %     return;
 % end
 
-time = 1 : params.nTime - params.frameJump - 1; % -1 because segmentation is based on motion
+time = 1 : params.nTime - 1; % -1 because segmentation is based on motion
 ntime = length(time);
 
 healingRate = nan(1,ntime);

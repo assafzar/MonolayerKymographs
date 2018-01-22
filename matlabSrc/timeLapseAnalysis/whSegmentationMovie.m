@@ -15,7 +15,7 @@ open(vwriter);
 % % aviFname = [dirs.roiVis dirs.expname '_segmentation.avi'];
 % aviobj = avifile(segmentationFname,'fps',3,'compression','None');
 W = nan; H = nan;
-for t = 1 : params.nTime - params.frameJump
+for t = 1 : params.nTime
     
     load([dirs.roiData pad(t,3) '_roi.mat']); % ROI
     I = imread([dirs.images pad(t,3) '.tif']);

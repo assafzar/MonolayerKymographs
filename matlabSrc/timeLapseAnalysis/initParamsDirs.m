@@ -1,10 +1,6 @@
-function [params,dirs] = initParamsDirs(filename,params) % params, mainDirname, expname, nFrames
+% params, mainDirname, expname, nFrames
+function [params,dirs] = initParamsDirs(filename,params) 
 
-
-% indFilesep = find(filename==filesep,1,'last');
-% mainDirname = filename(1:indFilesep);
-% expname = filename(indFilesep+1:end-4);
-% ext = filename(end-3:end);
 [mainDirname, expname, ext] = fileparts(filename);
 
 if ~(strcmp(ext, '.tif') || strcmp(ext, '.zvi')|| strcmp(ext, '.lsm'))
@@ -19,7 +15,9 @@ end
 if ~isfield(params,'isDx')
     params.isDx = true;
 else
-    error('currently supporting only dx');
+    if ~params.isDx
+        error('currently supporting only dx, rotate you images');
+    end
 end
 
 if ~isfield(params,'frameJump')
@@ -46,12 +44,8 @@ params.toMuPerHour = params.pixelSize * 60/(params.timePerFrame*params.frameJump
 
 
 if ~isfield(params,'patchSize')
-    params.patchSize = ceil(15.0/params.pixelSize); % 15 um in pixels
+    params.patchSize = ceil(params.patchSizeUm/params.pixelSize); % 15 um in pixels
 end
-
-% if ~isfield(params,'trajLength')
-%     params.trajLength = 5;
-% end
 
 if ~isfield(params,'nBilateralIter')
     params.nBilateralIter = 1;
@@ -69,9 +63,11 @@ end
 if ~isfield(params,'kymoResolution') % jumps of patchSize
     params.kymoResolution.maxDistMu = 180; % um
     params.kymoResolution.min = params.patchSize;
-    params.kymoResolution.stripSize = params.patchSize;
-    params.kymoResolution.max = ceil(params.kymoResolution.maxDistMu/params.pixelSize);
+    params.kymoResolution.stripSize = params.patchSize;    
 end
+
+params.kymoResolution.nPatches = floor(params.kymoResolution.maxDistMu / params.patchSizeUm);
+params.kymoResolution.max = params.kymoResolution.nPatches * params.patchSize;%ceil(params.kymoResolution.maxDistMu/params.pixelSize); % 500 um in pixels
 
 params.strips =  params.kymoResolution.min : params.kymoResolution.stripSize : params.kymoResolution.max;
 params.nstrips = length(params.strips);
@@ -204,10 +200,8 @@ end
 %% create images in directory
 nFrames = arrangeImages(mainDirname,expname,ext,dirs.images);
 
-if ~isfield(params,'nTime')
-    params.nTime = nFrames;
-else
-    assert(params.nTime <= nFrames);
+if ~isfield(params,'nTime') || (params.nTime > (min(nFrames,params.maxNFrames) - 1))
+    params.nTime = min(nFrames,params.maxNFrames) - 1;
 end
 
 end
