@@ -4,7 +4,7 @@ function [] = whTemporalBasedSegmentation(params,dirs)
 lbpMapping = getmapping(8,'riu2');
 for t = 1 : params.nTime
     
-    roiFname = [dirs.roiData pad(t,3) '_roi.mat'];
+    roiFname = [dirs.roiData sprintf('%03d',t) '_roi.mat'];
     
     if exist(roiFname,'file') && ~params.always
         load(roiFname);
@@ -26,7 +26,7 @@ for t = 1 : params.nTime
     
     %     % First time go on the safe side and use two segmentations
     %     if ~exist('prevRoi','var')
-    mfFname = [dirs.mfData pad(t,3) '_mf.mat'];
+    mfFname = [dirs.mfData sprintf('%03d',t) '_mf.mat'];
     load(mfFname); % scores
     
     % Threhold the matching score
@@ -65,7 +65,7 @@ for t = 1 : params.nTime
     
     % First time go on the safe side and use two segmentations
     if ~exist('prevRoi','var')
-        I = imread([dirs.images pad(t,3) '.tif']);
+        I = imread([dirs.images sprintf('%03d',t) '.tif']);
         
         % Assumeing 3 same channels
         if size(I,3) > 1
@@ -108,7 +108,7 @@ for t = 1 : params.nTime
     ROI = imfill(ROI,'holes');
     
     %     % Graph cur refinment
-    %     I = imread([dirs.images pad(t,3) '.tif']);
+    %     I = imread([dirs.images sprintf('%03d',t) '.tif']);
     %     ROI = whGCSegmentation(BIN2, I, scoresNoNans, params.patchSize, max(changeRadius,2));
     
     save(roiFname,'ROI');

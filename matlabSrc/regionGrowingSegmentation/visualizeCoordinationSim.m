@@ -33,8 +33,6 @@ axis off;
 axis tight;
 hold off;
 saveas(hCoord,outFname);
-
-close all;
 end
 
 function Inew = stretchTo256(I,p)

@@ -28,8 +28,8 @@ speedKymograph = nan(params.nstrips,params.nTime);
 speedKymographX = nan(params.nstrips,params.nTime);
 speedKymographY = nan(params.nstrips,params.nTime);
 for t = 1 : params.nTime
-    roiFname = [dirs.roiData pad(t,3) '_roi.mat']; % ROI
-    mfFname = [dirs.mfData pad(t,3) '_mf.mat']; % dxs, dys
+    roiFname = [dirs.roiData sprintf('%03d',t) '_roi.mat']; % ROI
+    mfFname = [dirs.mfData sprintf('%03d',t) '_mf.mat']; % dxs, dys
     
     load(roiFname);
     load(mfFname);
@@ -111,8 +111,8 @@ end
 
 coordinationKymograph = nan(params.nstrips,params.nTime);
 for t = 1 : params.nTime
-    roiFname = [dirs.roiData pad(t,3) '_roi.mat']; % ROI
-    coordinationFname = [dirs.coordination pad(t,3) '_coordination.mat']; % ROIclusters
+    roiFname = [dirs.roiData sprintf('%03d',t) '_roi.mat']; % ROI
+    coordinationFname = [dirs.coordination sprintf('%03d',t) '_coordination.mat']; % ROIclusters
     
     load(roiFname);
     load(coordinationFname);

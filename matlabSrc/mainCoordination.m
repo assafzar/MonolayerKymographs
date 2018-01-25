@@ -6,6 +6,11 @@
 %   outSimDname - where to output simulation results
 %   inFname - actual data to process
 
+% Example:
+%   outSimDname = 'C:\Users\assafza\Google Drive\Research\PostDoc\Talks\Neubias\WorkflowDecomposition\data\Coordination\simulations';
+%   inFname = 'C:\Users\assafza\Google Drive\Research\PostDoc\Talks\Neubias\WorkflowDecomposition\data\Coordination\Angeles_20140308_16hr_5min_0001_0002_AB01_03.tif';
+%   mainCoordination(outSimDname,inFname);
+
 % Assaf Zaritsky, Jan. 2018 (implemented for the NEUBIAS training school)
 
 function mainCoordination(outSimDname,inFname)
@@ -35,8 +40,8 @@ params.regionMerginParams.P = 0.03;% small P --> more merging
 params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
 
 %% Simulations
-sXCoords = [0,0,0.1,0.1,0.2,0.1,0.2,0.3,0.3];
-sYCoords = [0,0.1,0,0.1,0.1,0.2,0.2,0.2,0.3];
+sXCoords = [];%[0,0,0.1,0.1,0.2,0.1,0.2,0.3,0.3];
+sYCoords = [];%[0,0.1,0,0.1,0.1,0.2,0.2,0.2,0.3];
 
 assert(length(sXCoords) == length(sYCoords));
 
@@ -51,11 +56,15 @@ for isim = 1 : nSimulations
     [~,ROIclusters,~,~,~] = doRegionGrowingSegmentCoordination(IxSim,IySim,params);
     visualizeCoordinationSim(Ispeed,ROIclusters,[outPrefix '_coordVisSpeed.jpg']);
     visualizeCoordinationSim(Iorientation,ROIclusters,[outPrefix '_coordVisOrientation.jpg']);
+    close all;
 end
 
-if ~exist('inFname','var')
+if exist('inFname','var')
+    if ~exist(inFname,'file')
+        error('file %s does not exists',inFname);
+    end
     params = setParamsForTestDataset();
-    processTimeLapse(inFname,params)
+    processTimeLapse(inFname,params);
 end
 
 end

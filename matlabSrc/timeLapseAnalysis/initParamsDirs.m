@@ -105,6 +105,7 @@ dirs.roiVis = [dirs.roi 'vis' filesep];
 
 % Coordination
 dirs.coordination = [dirs.dirname filesep 'coordination' filesep];
+dirs.coordinationVis = [dirs.coordination filesep 'vis'];
 
 % kymographs
 dirs.kymographs = [dirs.main 'kymographs' filesep];
@@ -167,6 +168,11 @@ end
 if ~exist(dirs.coordination,'dir')
     mkdir(dirs.coordination);
 end
+
+if ~exist(dirs.coordination,'dir')
+    mkdir(dirs.coordinationVis);
+end
+
 
 %% Global directories
 if ~exist(dirs.kymographs,'dir')

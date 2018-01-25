@@ -16,13 +16,14 @@ p.addRequired('ROIclusters', @(x)validateattributes(x,{'uint8'},{'nonempty'}));
 p.addRequired('outFname', @(x)validateattributes(x,{'char'},{'nonempty'}));
 p.addOptional('extraColor', @(x)validateattributes(x,{'uint8'},{'nonempty'}));
 
-if nargin < 3
+if nargin < 4
     extraColor = 100;
 end
 
 [sizeY,sizeX] = size(I);
 
 % Icoord = uint8(zeros(sizeY,sizeX,3));%16
+I8 = imadjust(I);
 Icoord = uint8(zeros(sizeY,sizeX,3));%16
 I8red = I8; % assumes that the main motion is on the x-axis
 I8red(ROIclusters) = min(I8(ROIclusters) + extraColor, 255);% 65535
@@ -44,6 +45,4 @@ axis off;
 axis tight;
 hold off;
 saveas(hCoord,outFname);
-
-close all;
 end

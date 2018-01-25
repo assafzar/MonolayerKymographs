@@ -17,8 +17,8 @@ open(vwriter);
 W = nan; H = nan;
 for t = 1 : params.nTime
     
-    load([dirs.roiData pad(t,3) '_roi.mat']); % ROI
-    I = imread([dirs.images pad(t,3) '.tif']);
+    load([dirs.roiData sprintf('%03d',t) '_roi.mat']); % ROI
+    I = imread([dirs.images sprintf('%03d',t) '.tif']);
     
     % Assumeing 3 same channels
     if size(I,3) > 1

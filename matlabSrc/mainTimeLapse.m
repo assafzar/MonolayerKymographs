@@ -5,6 +5,10 @@
 %   filename - input time lapse
 %   params - parameters for processing, default values set for Angeles_20150402_14hrs_5min_AA01_7.tif
 
+% Example:
+%   fname = 'C:\Users\assafza\Google Drive\Research\PostDoc\Talks\Neubias\WorkflowDecomposition\data\GefScreen\Angeles_20150402_14hrs_5min_AA01_7.tif';
+%   mainTimeLapse(fname);
+
 % Assaf Zaritsky, Jan. 2018 (implemented for the NEUBIAS training school)
 
 function mainTimeLapse(filename,params)
