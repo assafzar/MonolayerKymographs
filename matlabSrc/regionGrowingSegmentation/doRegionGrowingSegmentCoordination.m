@@ -9,12 +9,10 @@ function [clusters,ROIclusters,clustersMask,outImgDx1,outImgDy1] = doRegionGrowi
 
 assert((size(dxs,1) == size(dys,1)) & (size(dxs,2) == size(dys,2)));
 
-if nargin < 3    
-        
+if nargin < 3            
     params.pixelSize = 1.267428; % um
     params.patchSize = 15.0; % um
-    params.nTime = floor(200 / params.timePerFrame); % frames to process (200 minutes)
-    params.maxSpeed = 90; % um / hr (max cell speed)
+    params.nBilateralIter = 1;
     
     % for region growing segmentation
     params.regionMerginParams.P = 0.03;% small P --> more merging
@@ -60,7 +58,7 @@ ROIclusters = imfill(ROIclusters,'holes');
 end
 
 
-%% Bilateral filtering
+%% Bilateral filtering - reduces resolution!
 function [filterMfs] = bilateralFiltering(mfs,patchSize,nIterations)
 maxVelocityOrig = max(abs(mfs(:)));
 mfs =  mfs + maxVelocityOrig;

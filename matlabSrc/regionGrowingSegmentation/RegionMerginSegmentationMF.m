@@ -55,7 +55,7 @@ for y = 2 : sizeY - 1
     end
 end
 
-[dummySort,indicesSorted]=sort([allPairs.diff]);
+[~,indicesSorted]=sort([allPairs.diff]);
 allPairs = allPairs(indicesSorted);
 %%
 % Initiate Union-Find data structure

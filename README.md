@@ -27,7 +27,7 @@ Assaf Zaritsky - assafzar@gmail.com
 
 ### Test data
 - Download raw images via the link: [TestData](https://cloud.biohpc.swmed.edu/index.php/s/SWGQQJySbOI206o/download) , called `Angeles_20150402_14hrs_5min_AA01_7.tif`
-- The default parameters in `main.m` were set for this data
+- The default parameters in `mainTimeLapse.m` were set for this data
 
 ### Output folders
 - Each time-lapse has its own folder (e.g., `Angeles_20150402_14hrs_5min_AA01_7`). 

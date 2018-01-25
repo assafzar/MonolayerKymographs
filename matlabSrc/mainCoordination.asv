@@ -1,0 +1,67 @@
+%% mainCoordination
+% 1. Simulate coordinated cluster and assess sensitivity of clustering
+% 2. Use real data and demonstrate clustering
+
+% Input:
+%   outSimDname - where to output simulation results
+
+% Assaf Zaritsky, Jan. 2018 (implemented for the NEUBIAS training school)
+
+function mainCoordination(outSimDname,inFname)
+
+p = inputParser;
+p.addRequired('ourDname', @(x)validateattributes(x,{'char'},{'nonempty'}));
+p.addOptional('inFname', @(x)validateattributes(x,{'char'},{'nonempty'}));
+
+if ~exist(outSimDname,'dir')
+    mkdir(outSimDname);
+end
+
+%% Simulation parameters
+sizeYX = [100,100];
+coordFrac = 0.3;
+sXBack = 1;
+sYBack = 0.3;
+% parameters to construct the coordinated cluster will be defined
+% independently for each experiment (see below)
+
+%% Region growing segmentation parameters
+params.pixelSize = 1; % um
+params.patchSize = 1; % um - resolution is reduced!
+params.nBilateralIter = 1;
+params.minClusterSize = 500;
+params.regionMerginParams.P = 0.03;% small P --> more merging
+params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
+
+%% Visualization
+extraColor = 2;
+
+%% Simulations
+sXCoords = [0,0,0.1,0.1,0.2,0.1];
+sYCoords = [0,0.1,0,0.1,0.1,0.2];
+
+assert(length(sXCoords) == length(sYCoords));
+
+nSimulations = length(sXCoords);
+
+for isim = 1 : nSimulations
+    sXCoord = sXCoords(isim);
+    sYCoord = sYCoords(isim);
+    outPrefix = [outSimDname filesep xy2str(sXCoord,sYCoord)]; % todo: format the string
+    [IySim,IxSim,Ispeed,Iorientation,coordROI] = simulateCoordination(sizeYX,coordFrac,sXBack,sYBack,sXCoord,sYCoord,outPrefix);
+    [~,ROIclusters,~,~,~] = doRegionGrowingSegmentCoordination(IxSim,IySim,params);
+    %     I = zeros([size(ROIclusters),2]); I(:,:,1) = IySim; I(:,:,2) = IxSim;
+    visualizeCoordinationSim(Ispeed,ROIclusters,[outPrefix '_coordVisSpeed.jpg']);
+    visualizeCoordinationSim(Iorientation,ROIclusters,[outPrefix '_coordVisOrientation.jpg']);
+end
+
+if ~exist('inFname','var')
+    return;
+end
+
+end
+
+function xyStr = xy2str(x,y)
+xyStr = ['Sx' num2str(x) 'Sy' num2str(y)];
+xyStr = strrep(xyStr,'.','');
+end
