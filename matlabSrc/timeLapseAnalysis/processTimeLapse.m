@@ -1,12 +1,12 @@
 function [] = processTimeLapse(filename,params) % pixelSize, timePerFrame, mainDirname, exp, initParams
 
-[params,dirs] = initParamsDirs(filename,params);
+[params,dirs] = initParamsDirs(filename,params); % set missing parameters, create output directories
 
-whLocalMotionEstimation(params,dirs);
-whTemporalBasedSegmentation(params,dirs);
-whCorrectGlobalMotion(params,dirs);
-whSegmentationMovie(params,dirs);
-whHealingRate(params,dirs); 
-whCoordination(params,dirs);
-whKymographs(params,dirs);
+whLocalMotionEstimation(params,dirs); % velocity fields estimation
+whTemporalBasedSegmentation(params,dirs); % cellular-background segmentation
+whCorrectGlobalMotion(params,dirs); % correction of stage-location errors
+whSegmentationMovie(params,dirs); % segmentation movie
+whHealingRate(params,dirs); % wound healing rate over time
+whCoordination(params,dirs); % coordinated clusters
+whKymographs(params,dirs); % spatiotemporal kymographs
 end

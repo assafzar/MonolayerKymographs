@@ -1,6 +1,6 @@
 function [] = whKymographs(params,dirs)
 
-params.always = true;
+params.always = false;
 
 params.xStepMinutes = 60;
 params.yStepUm = 50;

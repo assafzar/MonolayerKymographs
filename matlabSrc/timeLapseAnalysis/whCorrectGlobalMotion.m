@@ -6,6 +6,12 @@
 
 function [] = whCorrectGlobalMotion(params,dirs)
 
+correctMotionFname = [dirs.correctMotion dirs.expname '_correctMotion.mat'];
+
+if exist(correctMotionFname,'file') && ~params.always
+    return;
+end
+
 % move back to original files
 if exist([dirs.mfDataOrig filesep '001_mf.mat'],'file')    
     % unix(sprintf('cp -R %s %s',[dirs.mfDataOrig '*.mat'],dirs.mfData));
@@ -123,7 +129,7 @@ nCorrected = sum(abs(correctionsDx) > 0.5 | abs(correctionsDy) > 0.5);
 nCorrectedDx = sum(abs(correctionsDx) > 0.5);
 nCorrectedDy = sum(abs(correctionsDy) > 0.5);
 precentCorrected = nCorrected/length(correctionsDx);
-save([dirs.correctMotion dirs.expname '_correctMotion.mat'],'correctionsDx','correctionsDy','medianPrecentDy','medianPrecentDx','nCorrected','nCorrectedDx','nCorrectedDy','precentCorrected');%,'transDx','transDy'
+save(correctMotionFname,'correctionsDx','correctionsDy','medianPrecentDy','medianPrecentDx','nCorrected','nCorrectedDx','nCorrectedDy','precentCorrected');%,'transDx','transDy'
 end
 
 %%

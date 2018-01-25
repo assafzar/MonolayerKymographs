@@ -51,8 +51,8 @@ if ~isfield(params,'nBilateralIter')
     params.nBilateralIter = 1;
 end
 
-if ~isfield(params,'minClusterSize') % in mu
-    params.minClusterSize = 4000;
+if ~isfield(params,'minClusterArea') % in mu^2
+    params.minClusterArea = 5000;
 end
 
 if ~isfield(params,'regionMerginParams')

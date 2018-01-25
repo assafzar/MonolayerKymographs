@@ -35,13 +35,16 @@ sYBack = 0.3;
 params.pixelSize = 1; % um
 params.patchSize = 1; % um - resolution is reduced!
 params.nBilateralIter = 1;
-params.minClusterSize = 400;
+params.minClusterArea = 500; % in um^2
+
 params.regionMerginParams.P = 0.03;% small P --> more merging
 params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
+params.regionMerginParams.fVecSim = @vecEuclideanSimilarity;
+% params.regionMerginParams.fVecSim = @vecOrientationSimilarity; 
 
 %% Simulations
-sXCoords = [];%[0,0,0.1,0.1,0.2,0.1,0.2,0.3,0.3];
-sYCoords = [];%[0,0.1,0,0.1,0.1,0.2,0.2,0.2,0.3];
+sXCoords = [0,0,0.1,0.1,0.2,0.1,0.2,0.3,0.3];
+sYCoords = [0,0.1,0,0.1,0.1,0.2,0.2,0.2,0.3];
 
 assert(length(sXCoords) == length(sYCoords));
 
@@ -89,6 +92,9 @@ params.maxSpeed = 90; % um / hr (max cell speed)
 % for region growing segmentation
 params.regionMerginParams.P = 0.03;% small P --> more merging
 params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
+params.regionMerginParams.fVecSim = @vecEuclideanSimilarity;
+% params.regionMerginParams.fVecSim = @vecOrientationSimilarity;
+
 
 % for kymographs display
 params.kymoResolution.maxDistMu = 180; % how deep to go into the monolayer (um)

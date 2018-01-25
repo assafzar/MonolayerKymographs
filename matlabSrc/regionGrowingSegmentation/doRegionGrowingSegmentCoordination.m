@@ -40,7 +40,7 @@ ROIclusters = false(size(parents1));
 clustersMask = false(size(parents1));
 for ind = 1 : smallY * smallX
     cluster = parents1 == ind;
-    if sum(cluster(:)) > (params.minClusterSize / (params.pixelSize))
+    if sum(cluster(:)) > (params.minClusterArea / (params.pixelSize * params.pixelSize))
         dxc = mean(outImgDx1(cluster));
         dyc = mean(outImgDy1(cluster));
         cluster = bwfill(cluster,'holes');

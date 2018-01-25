@@ -30,6 +30,7 @@ if nargin < 2
     % for region growing segmentation
     params.regionMerginParams.P = 0.03;% small P --> more merging
     params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
+    params.regionMerginParams.fVecSim = @vecEuclideanSimilarity;
     
     % for kymographs display
     params.kymoResolution.maxDistMu = 180; % how deep to go into the monolayer (um)
