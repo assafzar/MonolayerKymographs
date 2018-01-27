@@ -7,8 +7,8 @@
 %   inFname - actual data to process
 
 % Example:
-%   outSimDname = 'C:\Users\assafza\Google Drive\Research\PostDoc\Talks\Neubias\WorkflowDecomposition\data\Coordination\simulations';
-%   inFname = 'C:\Users\assafza\Google Drive\Research\PostDoc\Talks\Neubias\WorkflowDecomposition\data\Coordination\Angeles_20140308_16hr_5min_0001_0002_AB01_03.tif';
+%   outSimDname = 'C:\Assaf\Research\MonolayerDynamics\data\Coordination\simulations';
+%   inFname = 'C:\Assaf\Research\MonolayerDynamics\data\Coordination\Angeles_20140308_16hr_5min_0001_0002_AB01_03.tif';
 %   mainCoordination(outSimDname,inFname);
 
 % Assaf Zaritsky, Jan. 2018 (implemented for the NEUBIAS training school)
@@ -66,7 +66,10 @@ if exist('inFname','var')
     if ~exist(inFname,'file')
         error('file %s does not exists',inFname);
     end
-    params = setParamsForTestDataset();
+    
+    pixelSize = 1.249902; % um  
+    params = setDefaultParams(pixelSize);
+
     processTimeLapse(inFname,params);
 end
 
@@ -76,34 +79,4 @@ end
 function xyStr = xy2str(x,y)
 xyStr = ['Sx' num2str(x) 'Sy' num2str(y)];
 xyStr = strrep(xyStr,'.','');
-end
-
-%%
-function params = setParamsForTestDataset()
-params.timePerFrame = 5; % minutes
-params.nRois = 1; % 1 - for 1-side advancing monolayer, 2 - wound healing
-params.always = false; % false means that available intermediate results are going to be used
-
-params.pixelSize = 1.249902; % um
-params.patchSizeUm = 15.0; % 15 um
-params.nTime = floor(200 / params.timePerFrame); % frames to process (200 minutes)
-params.maxSpeed = 90; % um / hr (max cell speed)
-
-% for region growing segmentation
-params.regionMerginParams.P = 0.03;% small P --> more merging
-params.regionMerginParams.Q = 0.005;% large Q --> more merging (more significant than P)
-params.regionMerginParams.fVecSim = @vecEuclideanSimilarity;
-% params.regionMerginParams.fVecSim = @vecOrientationSimilarity;
-
-
-% for kymographs display
-params.kymoResolution.maxDistMu = 180; % how deep to go into the monolayer (um)
-
-params.isDx = true; % main cell motion in x direction
-
-params.patchSize = ceil(params.patchSizeUm/params.pixelSize); % patch size in pixels
-
-params.kymoResolution.min = params.patchSize;
-params.kymoResolution.stripSize = params.patchSize;
-params.kymoResolution.maxDistMu = 180; % um
 end

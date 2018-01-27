@@ -86,7 +86,7 @@ end
 
 save(directionalityKymographFname,'directionalityKymograph');
 
-metaData.fname = [dirs.directionalityKymograph dirs.expname '_directionalityKymograph.eps'];
+metaData.fname = [dirs.directionalityKymograph dirs.expname '_directionalityKymograph.jpg'];
 metaData.fnameFig = [dirs.directionalityKymograph dirs.expname '_directionalityKymograph.fig'];
 metaData.caxis = [0 8];
 % metaData.caxis = [0.9 1.4]; % Zhuo
@@ -129,7 +129,7 @@ end
 
 save(coordinationKymographFname,'coordinationKymograph');
 
-metaData.fname = [dirs.coordinationKymograph dirs.expname '_coordinationKymograph.eps'];
+metaData.fname = [dirs.coordinationKymograph dirs.expname '_coordinationKymograph.jpg'];
 metaData.fnameFig = [dirs.coordinationKymograph dirs.expname '_coordinationKymograph.fig'];
 metaData.caxis = [0 1];
 

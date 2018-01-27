@@ -216,8 +216,17 @@ end
 function [nFrames] = arrangeImages(mainDirname,expname,ext,imagesdir)
 fname = [mainDirname filesep expname ext];
 
-if ~exist(fname,'file')
-    error('File does not exist %s',fname);
+if ~exist(fname,'file')    
+    t = 1;
+    while exist([imagesdir sprintf('%03d',t) '.tif'],'file')
+        t = t + 1;
+    end
+    nFrames = t - 1;
+    
+    if nFrames < 2    
+        error('File %s nor images exist',fname);
+    end
+    return;
 end
 
 
